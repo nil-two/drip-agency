@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -eu
+MODE="$1"
+
+gen_agent() {
+  cat <<'EOF'
+#!/bin/sh
+DRIP_AGENCY_ROOT=${DRIP_AGENCY_ROOT:-~/.drip-agency}
+
+export DRIP_HOME="$DRIP_AGENCY_ROOT/drip"
+export DRIP_JAVA_CMD="/usr/bin/java"
+exec "$DRIP_AGENCY_ROOT/bin/drip" $*
+EOF
+}
+
+DRIP_AGENCY_ROOT=${DRIP_AGENCY_ROOT:-~/.drip-agency}
+DRIP_AGENCY_BIN="$DRIP_AGENCY_ROOT/bin"
+if [ ! -e "$DRIP_AGENCY_ROOT" ]; then
+  mkdir -p "$DRIP_AGENCY_BIN"
+fi
+
+DRIP_CMD="$DRIP_AGENCY_BIN/drip"
+DRIP_URL="https://raw.githubusercontent.com/ninjudd/drip/master/bin/drip"
+if [ ! -e "$DRIP_CMD" ]; then
+  curl -L "$DRIP_URL" > "$DRIP_CMD"
+  chmod +x "$DRIP_CMD"
+fi
+
+JAVA_CMD="$DRIP_AGENCY_BIN/java"
+case "$MODE" in
+  enable)
+    gen_agent > "$JAVA_CMD"
+    chmod +x "$JAVA_CMD"
+    ;;
+  disable)
+    rm "$JAVA_CMD"
+    ;;
+esac
+exit 0
