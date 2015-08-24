@@ -6,6 +6,17 @@ with [ninjudd/drip](https://github.com/ninjudd/drip).
 
 It provides simple shell script wrapper for java executable files.
 
+Usage
+-----
+
+```
+# Create wrapper of java
+drip-agency enable
+
+# Remove wrapper of java
+drip-agency disable
+```
+
 Installtion
 -----------
 
@@ -19,7 +30,7 @@ echo 'export PATH="$HOME/.drip-agency/bin:$PATH"' >> ~/.bash_profile
 # 3. Restart your shell
 exec $SHELL -l
 
-# 4. enable the drip-agency
+# 4. Enable the drip-agency
 drip-agency enable
 ```
 
