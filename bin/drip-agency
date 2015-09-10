@@ -13,9 +13,13 @@ EOF
 }
 
 DRIP_AGENCY_ROOT=${DRIP_AGENCY_ROOT:-~/.drip-agency}
-DRIP_AGENCY_BIN="$DRIP_AGENCY_ROOT/bin"
 if [ ! -e "$DRIP_AGENCY_ROOT" ]; then
-  mkdir -p "$DRIP_AGENCY_BIN"
+  mkdir "$DRIP_AGENCY_ROOT"
+fi
+
+DRIP_AGENCY_BIN="$DRIP_AGENCY_ROOT/bin"
+if [ ! -e "$DRIP_AGENCY_BIN" ]; then
+  mkdir "$DRIP_AGENCY_BIN"
 fi
 
 DRIP_CMD="$DRIP_AGENCY_BIN/drip"
