@@ -22,7 +22,7 @@ Installtion
 
 ```
 # 1. Check out drip-agency
-git clone https://github.com/nil2nekoni/drip-agency ~/.drip-agency
+git clone https://github.com/nil-two/drip-agency ~/.drip-agency
 
 # 2. Add ~/.drip-agency to your $PATH for access to the drip-agency
 echo 'export PATH="$HOME/.drip-agency/bin:$PATH"' >> ~/.bash_profile
